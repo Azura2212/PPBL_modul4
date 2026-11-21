@@ -1,0 +1,27 @@
+import 'package:flutter/foundation.dart';
+
+class Pendaftar {
+  const Pendaftar({
+    required this.nama,
+    required this.email,
+    required this.sesi,
+  });
+
+  final String nama;
+  final String email;
+  final String sesi;
+}
+
+class PendaftarModel extends ChangeNotifier {
+  final List<Pendaftar> _daftar = [];
+
+  List<Pendaftar> get daftar => List.unmodifiable(_daftar);
+
+  void tambah(Pendaftar pendaftar) {
+    _daftar.add(pendaftar);
+    notifyListeners();
+  }
+
+  int jumlahSesi(String sesi) =>
+      _daftar.where((pendaftar) => pendaftar.sesi == sesi).length;
+}
